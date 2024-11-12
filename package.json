@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.7.0",
+    "feather-icons": "^4.29.2",
     "nuxt": "^3.14.159",
     "pinia": "^2.2.6",
     "vue": "latest",

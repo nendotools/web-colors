@@ -20,7 +20,12 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
+html {
+  font-size: 62.5%;
+}
+
 body {
+  font: var(--text-body);
   background-color: #090909;
   color: #f0f0f0;
 }
