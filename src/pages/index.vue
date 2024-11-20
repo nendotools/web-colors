@@ -1,8 +1,8 @@
 <template>
-  <div>page content</div>
-  <div>
+  <h1>page content</h1>
+  <h3>
     {{ isMobile }}
-  </div>
+  </h3>
 </template>
 
 <script lang="ts" setup>
