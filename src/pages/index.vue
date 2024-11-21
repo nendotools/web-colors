@@ -1,14 +1,29 @@
 <template>
-  <h1>page content</h1>
   <h3>
-    {{ isMobile }}
+    Colors
   </h3>
+
+  <div class="color-options">
+    <Color :color="currentScheme.primary" />
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
+import Color from '@/components/Color.vue';
 import { useGlobalStore } from '@/pinia/global';
+import { useColorStore } from '@/pinia/colors';
 
+const colorStore = useColorStore();
 const globalStore = useGlobalStore();
 const { isMobile } = storeToRefs(globalStore);
+const { currentScheme } = storeToRefs(colorStore);
 </script>
+
+<style lang="scss" scoped>
+.color-options {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+</style>

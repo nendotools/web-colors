@@ -5,8 +5,12 @@
     </template>
     <template #right>
       <Button size="md" variant="plain" @click="globalStore.toggleMode">
-        <Icon v-if="isLightMode" name="sun" />
-        <Icon v-else name="moon" />
+        <Transition name="fade">
+          <Icon v-show="isLightMode" name="sun" />
+        </Transition>
+        <Transition name="fade">
+          <Icon v-show="!isLightMode" name="moon" />
+        </Transition>
       </Button>
     </template>
   </Header>
@@ -25,3 +29,29 @@ import { useGlobalStore } from '@/pinia/global';
 const globalStore = useGlobalStore();
 const { isLightMode } = storeToRefs(globalStore);
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active {
+  transition: opacity 0.2s cubic-bezier(.56, 0, .9, .11);
+}
+
+.fade-leave-active {
+  transition: opacity 0.2s cubic-bezier(.06, .74, .66, 1)
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+button {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+</style>
