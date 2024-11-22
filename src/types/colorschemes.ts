@@ -1,4 +1,5 @@
 import type { HSLColor } from "./colors";
+import { useGlobalStore } from "~/pinia/global";
 
 export interface Scheme {
   primary: HSLColor;
@@ -73,7 +74,10 @@ export class MonochromeScheme implements MonochromeColors {
     });
   }
   toCSS(): Record<string, string> {
-    const background = this.primary.copy().desaturate(65);
+    const globalStore = useGlobalStore();
+    const background = this.primary.copy().setSaturation(
+      this.primary.s * (globalStore.globalInfluence / 100),
+    );
     return {
       "--primary-color": this.primary.toString(),
       "--secondary-color": this.primary.copy().lighten(this.spread * 3)

@@ -14,7 +14,7 @@ const props = withDefaults(
     height?: number;
     label?: string;
   }>(), {
-  height: 15,
+  height: 35,
 });
 
 const startDrag = (event: MouseEvent) => {
@@ -34,13 +34,16 @@ const width = computed(() => `${props.value}%`);
 const height = computed(() => `${props.height}px`);
 
 const hueOffsetStyle = computed(() =>
-  ({ '--hue-offset': (props.value - 180) % 360 }))
+({
+  '--hue-offset': (props.value - 180) % 360,
+  '--height': height.value,
+}))
 </script>
 
 <style lang="scss" scoped>
 .scroll-hue-gradient {
   width: 100%;
-  height: 20px;
+  height: var(--height);
   background: linear-gradient(to right, hsl(var(--hue-offset), 100%, 50%), hsl(calc(var(--hue-offset) + 60), 100%, 50%), hsl(calc(var(--hue-offset) + 120), 100%, 50%), hsl(calc(var(--hue-offset) + 180), 100%, 50%), hsl(calc(var(--hue-offset) + 240), 100%, 50%), hsl(calc(var(--hue-offset) + 300), 100%, 50%), hsl(calc(var(--hue-offset) + 360), 100%, 50%));
 }
 </style>

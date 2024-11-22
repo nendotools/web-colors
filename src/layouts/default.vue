@@ -1,21 +1,23 @@
 <template>
-  <Header>
-    <template #left>
-      <h3>Colorscheme Builder</h3>
-    </template>
-    <template #right>
-      <Button size="md" variant="plain" @click="globalStore.toggleMode">
-        <Transition name="fade">
-          <Icon v-show="isLightMode" name="sun" />
-        </Transition>
-        <Transition name="fade">
-          <Icon v-show="!isLightMode" name="moon" />
-        </Transition>
-      </Button>
-    </template>
-  </Header>
-  <div class="main">
-    <slot />
+  <div class="wrapper">
+    <Header>
+      <template #left>
+        <h3>Colorscheme Builder</h3>
+      </template>
+      <template #right>
+        <Button size="md" variant="plain" @click="globalStore.toggleMode">
+          <Transition name="fade">
+            <Icon v-show="isLightMode" name="sun" />
+          </Transition>
+          <Transition name="fade">
+            <Icon v-show="!isLightMode" name="moon" />
+          </Transition>
+        </Button>
+      </template>
+    </Header>
+    <div class="main">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -31,6 +33,10 @@ const { isLightMode } = storeToRefs(globalStore);
 </script>
 
 <style lang="scss" scoped>
+.wrapper {
+  height: 100vh;
+}
+
 .fade-enter-active {
   transition: opacity 0.2s cubic-bezier(.56, 0, .9, .11);
 }
@@ -45,7 +51,10 @@ const { isLightMode } = storeToRefs(globalStore);
 }
 
 .main {
-  padding: var(--spacing-lg);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 button {

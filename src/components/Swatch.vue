@@ -24,6 +24,7 @@ const style = computed(() => ({
   user-select: none;
   width: 100%;
   height: 50px;
+  transition: background-color 0.3s;
 
   .detail {
     align-self: center;

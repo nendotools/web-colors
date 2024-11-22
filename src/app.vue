@@ -90,4 +90,8 @@ input {
   margin: 0;
   padding: 0;
 }
+
+label {
+  user-select: none;
+}
 </style>
