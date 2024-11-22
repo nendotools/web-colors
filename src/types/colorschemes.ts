@@ -90,6 +90,9 @@ export class MonochromeScheme implements MonochromeColors {
         .toString(),
       "--text-color": this.primary.copy().darken(this.spread).toString(),
       "--text-onFill": this.primary.copy().lighten(this.spread).toString(),
+      "--text-color-danger": this.primary.copy().setHue(0).setSaturation(
+        this.primary.s * 0.65,
+      ).toString(),
     };
   }
 }

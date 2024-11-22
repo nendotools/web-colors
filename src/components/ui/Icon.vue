@@ -39,8 +39,8 @@ onMounted(() => {
 
   &.icon-sm {
     svg {
-      width: 1rem;
-      height: 1rem;
+      width: 2rem;
+      height: 2rem;
     }
   }
 

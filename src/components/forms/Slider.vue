@@ -1,33 +1,54 @@
 <template>
   <div class="slider-container">
     <div class="slider-indicator" :style="{ height, width }"></div>
-    <input type="range" min="0" max="100" :value="value" class="slider-input" :style="{ height }"
+    <input type="range" min="0" :max="limited ? limitedMax : max" :value="value" class="slider-input" :style="{ height }"
       @input="handleChange" />
 
     <label v-if="label">{{ label }}</label>
+    <Icon v-if="limited" name="x-octagon" class="lock limited" size="sm" @click="toggleLock" />
+    <Icon v-if="!limited && limited != null" name="octagon" class="lock" size="sm" @click="toggleLock" />
   </div>
 </template>
 
 <script setup lang="ts">
+import Icon from '@/components/ui/Icon.vue';
+
 const emit = defineEmits<{
-  update: (value: number) => void;
+  (e: 'update', value: number): void;
+  (e: 'toggleLock'): void;
 }>();
 const props = withDefaults(
   defineProps<{
     value: number;
+    max?: number;
+    limited?: boolean | null;
+    limitedMax?: number;
     height?: number;
     label?: string;
   }>(), {
+  max: 100,
+  limited: null,
+  limitedMax: 100,
   height: 15,
 });
 
-const width = computed(() => `${props.value}%`);
+const width = computed(() => `${Math.min(props.value / (props.limited ? props.limitedMax : props.max) * 100, 100)}%`);
 const height = computed(() => `${props.height}px`);
 
-const handleChange = (event: InputEvent) => {
+const handleChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   emit('update', parseFloat(target.value));
 };
+
+const toggleLock = () => {
+  if (props.limited === null) return;
+  if (!props.limited && props.value > props.limitedMax) {
+    emit('update', props.limitedMax);
+    console.log('limting to', props.limitedMax);
+  }
+
+  emit('toggleLock');
+}
 </script>
 
 <style lang="scss" scoped>
@@ -35,6 +56,16 @@ const handleChange = (event: InputEvent) => {
   position: relative;
   width: 100%;
   height: auto;
+}
+
+.lock {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+
+  &.limited {
+    color: var(--text-color-danger);
+  }
 }
 
 /**
