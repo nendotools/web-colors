@@ -86,6 +86,8 @@ export class MonochromeScheme implements MonochromeColors {
         .toString(),
       "--background-color-light": background.copy().darken(this.spread * 2.5)
         .toString(),
+      "--background-color-lighter": background.copy().darken(this.spread * 1.5)
+        .toString(),
       "--foreground-color": this.primary.copy().lighten(this.spread * 2)
         .toString(),
       "--text-color": this.primary.copy().darken(this.spread).toString(),

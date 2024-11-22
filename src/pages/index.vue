@@ -7,9 +7,12 @@
       @toggle-lock="globalStore.toggleUnrestrictedLimit" />
   </Sidebar>
   <div class="content">
-    <h3>
-      Colors
-    </h3>
+    <div class="modes">
+      <h3 class="active">monochromatic</h3>
+      <h3>complementary</h3>
+      <h3>analogous</h3>
+      <h3>triadic</h3>
+    </div>
 
     <div class="color-options">
       <ColorCard :color="currentScheme.primary" @update-color="(color) => currentScheme.primary = color" />
@@ -34,10 +37,24 @@ const { currentScheme } = storeToRefs(colorStore);
 <style lang="scss" scoped>
 .content {
   width: 100%;
-  padding: var(--spacing-xxxl) var(--spacing-xl);
+  padding: var(--spacing-xl) var(--spacing-xl);
+}
+
+.modes {
+  padding: var(--spacing-sm) var(--spacing-xxl);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--background-color-lighter);
+  user-select: none;
+
+  .active {
+    color: var(--foreground-color);
+  }
 }
 
 .color-options {
+  padding: var(--spacing-xxxl) 0;
   display: flex;
   flex-direction: row;
   gap: 10px;
