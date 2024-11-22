@@ -8,7 +8,7 @@ interface State {
 export const useGlobalStore = defineStore("global", {
   state: (): State => ({
     windowWidth: window.innerWidth,
-    mode: "light",
+    mode: "dark",
   }),
   getters: {
     isMobile(state: State) {

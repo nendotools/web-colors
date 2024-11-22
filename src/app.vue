@@ -14,7 +14,7 @@ const globalStore = useGlobalStore();
 
 const themeStyle = computed(() => ({
   "--color-scheme": globalStore.mode,
-  ...colorStore.style,
+  ...colorStore.currentScheme.toCSS()
 }));
 
 useHead({
@@ -49,9 +49,11 @@ html {
 body {
   color-scheme: var(--color-scheme);
   font: var(--text-body-md);
-  background-color: light-dark(var(--color-background), var(--primary-color));
+  background-color: light-dark(var(--primary-color), var(--background-color));
   color: light-dark(var(--text-background), var(--text-foreground));
   transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
@@ -82,5 +84,10 @@ h5 {
   font: var(--text-ui-xs);
   padding: 0;
   margin: 0;
+}
+
+input {
+  margin: 0;
+  padding: 0;
 }
 </style>

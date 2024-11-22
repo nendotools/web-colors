@@ -72,4 +72,20 @@ export class MonochromeScheme implements MonochromeColors {
       "--text-onFill": this.primary.copy().lighten(this.spread),
     });
   }
+  toCSS(): Record<string, string> {
+    const background = this.primary.copy().desaturate(65);
+    return {
+      "--primary-color": this.primary.toString(),
+      "--secondary-color": this.primary.copy().lighten(this.spread * 3)
+        .toString(),
+      "--background-color": background.copy().darken(this.spread * 3)
+        .toString(),
+      "--background-color-light": background.copy().darken(this.spread * 2.5)
+        .toString(),
+      "--foreground-color": this.primary.copy().lighten(this.spread * 2)
+        .toString(),
+      "--text-color": this.primary.copy().darken(this.spread).toString(),
+      "--text-onFill": this.primary.copy().lighten(this.spread).toString(),
+    };
+  }
 }

@@ -4,13 +4,13 @@
   </h3>
 
   <div class="color-options">
-    <Color :color="currentScheme.primary" />
+    <ColorCard :color="currentScheme.primary" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
-import Color from '@/components/Color.vue';
+import ColorCard from '@/components/ColorCard.vue';
 import { useGlobalStore } from '@/pinia/global';
 import { useColorStore } from '@/pinia/colors';
 

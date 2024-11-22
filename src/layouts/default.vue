@@ -14,7 +14,7 @@
       </Button>
     </template>
   </Header>
-  <div>
+  <div class="main">
     <slot />
   </div>
 </template>
@@ -42,6 +42,10 @@ const { isLightMode } = storeToRefs(globalStore);
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.main {
+  padding: var(--spacing-lg);
 }
 
 button {

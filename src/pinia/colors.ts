@@ -23,9 +23,14 @@ export const useColorStore = defineStore("colors", {
     style: (state: State) => state.currentScheme.toString(),
   },
   actions: {
-    setHue(hue: number) {
-      this.hue = hue % 360;
-      this.currentScheme.primary.shift(hue);
+    shiftHue(hue: number) {
+      this.currentScheme.primary.shift(hue % 360);
+    },
+    shiftSaturation(saturation: number) {
+      this.currentScheme.primary.saturate(saturation);
+    },
+    shiftLightness(lightness: number) {
+      this.currentScheme.primary.lighten(lightness);
     },
   },
 });

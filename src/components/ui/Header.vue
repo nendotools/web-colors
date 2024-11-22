@@ -19,5 +19,6 @@
   align-items: center;
   gap: 1rem;
   padding: var(--spacing-md) var(--spacing-xxl);
+  background-color: var(--background-color-light);
 }
 </style>

@@ -5,12 +5,14 @@ export interface HSLColor {
   a?: number | "none";
   copy(): HSLColor;
   toString(): string;
-  shift(hue: number): void;
-  saturate(percent: number): void;
-  desaturate(percent: number): void;
-  lighten(percent: number): void;
-  darken(percent: number): void;
-  lighten(percent: number): void;
+  shift(hue: number): HSLColor;
+  saturate(percent: number): HSLColor;
+  desaturate(percent: number): HSLColor;
+  darken(percent: number): HSLColor;
+  lighten(percent: number): HSLColor;
+  setHue(hue: number): HSLColor;
+  setSaturation(saturation: number): HSLColor;
+  setLightness(lightness: number): HSLColor;
 }
 
 export class hsl implements HSLColor {
@@ -62,6 +64,19 @@ export class hsl implements HSLColor {
 
   darken(p: number) {
     this.l = percent(this.l - p);
+    return this;
+  }
+
+  setHue(hue: number) {
+    this.h = hue % 360;
+    return this;
+  }
+  setSaturation(saturation: number) {
+    this.s = percent(saturation);
+    return this;
+  }
+  setLightness(lightness: number) {
+    this.l = percent(lightness);
     return this;
   }
 }
