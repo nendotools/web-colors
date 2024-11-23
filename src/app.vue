@@ -54,6 +54,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 h1 {

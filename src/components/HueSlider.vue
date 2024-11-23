@@ -1,12 +1,12 @@
 <template>
-  <div class="scroll-hue-gradient" :style="hueOffsetStyle" @mousedown="startDrag">
+  <div class="scroll-hue-gradient" :style="hueOffsetStyle" @mousedown.self="startDrag">
   </div>
   <label v-if="label">{{ label }}</label>
 </template>
 
 <script setup lang="ts">
 const emit = defineEmits<{
-  update: (value: number) => void;
+  (e: 'update', value: number): void;
 }>();
 const props = withDefaults(
   defineProps<{
@@ -18,7 +18,7 @@ const props = withDefaults(
 });
 
 const startDrag = (event: MouseEvent) => {
-  const el = event.target;
+  const el = event.target as HTMLElement;
   const handleMouseMove = (event: MouseEvent) => {
     emit('update', Math.round(event.movementX / el.clientWidth * 240));
   };
@@ -30,7 +30,6 @@ const startDrag = (event: MouseEvent) => {
   window.addEventListener('mouseup', handleMouseUp);
 };
 
-const width = computed(() => `${props.value}%`);
 const height = computed(() => `${props.height}px`);
 
 const hueOffsetStyle = computed(() =>

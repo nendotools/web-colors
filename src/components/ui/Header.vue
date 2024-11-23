@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  padding: var(--spacing-md) var(--spacing-xxl);
+  padding: var(--spacing-xl) var(--spacing-xxl);
   background-color: var(--background-color-light);
 }
 </style>

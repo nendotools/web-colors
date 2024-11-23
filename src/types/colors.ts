@@ -44,6 +44,9 @@ export class hsl implements HSLColor {
 
   shift(hue: number) {
     this.h = (this.h + hue) % 360;
+    if (this.h < 0) {
+      this.h = 360 + this.h;
+    }
     return this;
   }
 

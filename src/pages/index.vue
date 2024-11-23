@@ -8,10 +8,10 @@
   </Sidebar>
   <div class="content">
     <div class="modes">
-      <h3 class="active">monochromatic</h3>
-      <h3>complementary</h3>
-      <h3>analogous</h3>
-      <h3>triadic</h3>
+      <Button variant="plain" size="lg" highlight glow>monochromatic</Button>
+      <Button variant="plain" size="lg">complementary</Button>
+      <Button variant="plain" size="lg">analogous</Button>
+      <Button variant="plain" size="lg">triadic</Button>
     </div>
 
     <div class="color-options">
@@ -25,6 +25,7 @@ import { storeToRefs } from 'pinia';
 import ColorCard from '@/components/ColorCard.vue';
 import Sidebar from '@/components/ui/Sidebar.vue';
 import Slider from '@/components/forms/Slider.vue';
+import Button from '~/components/ui/Button.vue';
 import Spacer from '~/components/ui/Spacer.vue';
 import { useGlobalStore } from '@/pinia/global';
 import { useColorStore } from '@/pinia/colors';

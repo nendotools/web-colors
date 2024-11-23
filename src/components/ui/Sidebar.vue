@@ -50,6 +50,7 @@ const isOpen = ref(true);
   position: relative;
   width: min-content;
   height: min-content;
+  cursor: pointer;
   margin-right: -30px;
   top: 0;
   right: 0;

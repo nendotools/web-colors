@@ -4,6 +4,7 @@ import { useGlobalStore } from "~/pinia/global";
 export interface Scheme {
   primary: HSLColor;
   toString(): string;
+  toCSS(): Record<string, string>;
 }
 
 // all same Hue
@@ -80,7 +81,7 @@ export class MonochromeScheme implements MonochromeColors {
     );
     return {
       "--primary-color": this.primary.toString(),
-      "--secondary-color": this.primary.copy().lighten(this.spread * 3)
+      "--secondary-color": this.primary.copy().lighten(this.spread * 2)
         .toString(),
       "--background-color": background.copy().darken(this.spread * 3)
         .toString(),
