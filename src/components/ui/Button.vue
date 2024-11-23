@@ -36,6 +36,7 @@ button {
   border: none;
   cursor: pointer;
   color: var(--color-primary);
+  transition: color 0.5s ease-in-out;
 
   &.glow {
     // slowly pulsate the color of the button on hover

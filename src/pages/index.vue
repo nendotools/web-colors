@@ -8,31 +8,43 @@
   </Sidebar>
   <div class="content">
     <div class="modes">
-      <Button variant="plain" size="lg" highlight glow>monochromatic</Button>
-      <Button variant="plain" size="lg">complementary</Button>
-      <Button variant="plain" size="lg">analogous</Button>
-      <Button variant="plain" size="lg">triadic</Button>
+      <Button v-for="mode in ColorSchemeTypes" :key="mode" variant="plain" size="lg" :highlight="mode === currentMode"
+        :glow="mode !== currentMode" @click="setMode(mode)">
+        {{ mode }}
+      </Button>
     </div>
 
     <div class="color-options">
-      <ColorCard :color="currentScheme.primary" @update-color="(color) => currentScheme.primary = color" />
+      <ColorCard v-for="color, i in colors" :key="i" :color="color" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
-import ColorCard from '@/components/ColorCard.vue';
-import Sidebar from '@/components/ui/Sidebar.vue';
-import Slider from '@/components/forms/Slider.vue';
-import Button from '~/components/ui/Button.vue';
-import Spacer from '~/components/ui/Spacer.vue';
-import { useGlobalStore } from '@/pinia/global';
-import { useColorStore } from '@/pinia/colors';
+import { storeToRefs } from "pinia";
+import ColorCard from "@/components/ColorCard.vue";
+import Sidebar from "@/components/ui/Sidebar.vue";
+import Slider from "@/components/forms/Slider.vue";
+import Button from "~/components/ui/Button.vue";
+import Spacer from "~/components/ui/Spacer.vue";
+import { useGlobalStore } from "@/pinia/global";
+import { useColorStore } from "@/pinia/colors";
+import { ColorSchemeTypes } from "~/types/colorschemes";
 
 const colorStore = useColorStore();
 const globalStore = useGlobalStore();
 const { currentScheme } = storeToRefs(colorStore);
+
+const currentMode = ref<ColorSchemeTypes>(ColorSchemeTypes.Monochrome);
+
+const setMode = (mode: ColorSchemeTypes) => {
+  currentMode.value = mode;
+  colorStore.setMode(mode);
+};
+
+const colors = computed(() => {
+  return colorStore.colors;
+});
 </script>
 
 <style lang="scss" scoped>

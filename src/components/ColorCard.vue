@@ -1,11 +1,11 @@
 <template>
   <Card>
     <div class="color-group">
-      <Swatch v-for="c in darkenedColors" :key="c.label" :color="c.color" @click="$emit('updateColor', c.color)" />
+      <Swatch v-for="c in darkenedColors" :key="c.label" :color="c.color" @click="setColor(c.color)" />
     </div>
     <Swatch :color="color" />
     <div class="color-group">
-      <Swatch v-for="c in lightenedColors" :key="c.label" :color="c.color" @click="$emit('updateColor', c.color)" />
+      <Swatch v-for="c in lightenedColors" :key="c.label" :color="c.color" @click="setColor(c.color)" />
     </div>
 
     <Spacer />
@@ -26,17 +26,19 @@ import Spacer from '@/components/ui/Spacer.vue';
 import Slider from '@/components/forms/Slider.vue';
 import HueSlider from '@/components/HueSlider.vue';
 import { useColorStore } from '@/pinia/colors';
-
-import { hsl } from '@/pinia/colors';
+import type { HSLColor } from '~/types/colors';
 
 const colorStore = useColorStore();
 const props = defineProps<{
   color: HSLColor;
 }>();
 
-defineEmits<{
-  updateColor: (color: HSLColor) => void;
-}>();
+const setColor = (c: HSLColor) => {
+  props.color.h = c.h;
+  props.color.s = c.s;
+  props.color.l = c.l;
+  props.color.a = c.a;
+};
 
 const darkenedColors = computed(() => [
   { color: props.color.copy().darken(20), label: '20' },
