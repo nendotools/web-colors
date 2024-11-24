@@ -8,7 +8,9 @@ export interface Scheme {
   type: ColorSchemeTypes;
   primary: HSLColor;
   toString(): string;
+  toJSON(): string;
   toCSS(): Record<string, string>;
+  toCSSString(): string;
 }
 
 export type ColorScheme =

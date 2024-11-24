@@ -37,6 +37,7 @@ const style = computed(() => ({
     align-self: center;
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
   }
 
   &:hover {

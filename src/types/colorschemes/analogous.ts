@@ -32,17 +32,8 @@ export class AnalogousScheme implements AnalogousColors {
     this.adjacentSpread = adjacentSpread;
   }
 
-  toString(): string {
-    return JSON.stringify({
-      "--primary-color": this.primary,
-      "--secondary-color": this.primary.copy().lighten(this.spread * 3),
-      "--background-color": this.primary.copy().darken(this.spread * 2),
-      "--foreground-color": this.primary.copy().lighten(this.spread * 2),
-      "--text-color": this.primary.copy().darken(this.spread),
-      "--text-onFill": this.primary.copy().lighten(this.spread),
-    });
-  }
-  toCSS(): Record<string, string> {
+
+  prepareColorMap(): Record<string, string> {
     const globalStore = useGlobalStore();
     const background = this.primary.copy().setSaturation(
       this.primary.s * (globalStore.globalInfluence / 100),
@@ -65,6 +56,21 @@ export class AnalogousScheme implements AnalogousColors {
         this.primary.s * 0.65,
       ).toString(),
     };
+  }
+
+  toJSON(): string {
+    return JSON.stringify(this.prepareColorMap());
+  }
+  toCSSString(): string {
+    const values = this.prepareColorMap();
+    const outputString = Object.keys(values).reduce((acc, key) => {
+      return `${acc}\n    ${key}: ${values[key]};`;
+    },
+      "{");
+    return outputString + "\n}";
+  }
+  toCSS(): Record<string, string> {
+    return this.prepareColorMap();
   }
 }
 

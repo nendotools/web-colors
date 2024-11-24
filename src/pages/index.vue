@@ -28,6 +28,10 @@
     <div class="color-options">
       <ColorCard v-for="color, i in colors" :key="i" :color="color" />
     </div>
+
+    <div class="output">
+      <OutputCard />
+    </div>
   </div>
 </template>
 
@@ -38,6 +42,7 @@ import Slider from "@/components/forms/Slider.vue";
 import Checkbox from "@/components/forms/Checkbox.vue";
 import Button from "~/components/ui/Button.vue";
 import Spacer from "~/components/ui/Spacer.vue";
+import OutputCard from "~/components/OutputCard.vue";
 import { useGlobalStore } from "@/pinia/global";
 import { useColorStore } from "@/pinia/colors";
 import { ColorSchemeTypes } from "~/types/colorschemes";
@@ -59,7 +64,9 @@ const colors = computed(() => {
 
 <style lang="scss" scoped>
 .content {
+  position: relative;
   width: 100%;
+  overflow-x: hidden;
   padding: var(--spacing-xl) var(--spacing-xl);
 }
 
@@ -80,6 +87,19 @@ const colors = computed(() => {
   padding: var(--spacing-xxxl) 0;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-evenly;
   gap: 10px;
+
+  div {
+    flex-grow: 1;
+  }
+}
+
+.output {
+  width: 100%;
+  padding: var(--spacing-xxxl) 0;
+  overflow: hidden;
 }
 </style>
