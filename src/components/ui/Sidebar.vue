@@ -56,7 +56,7 @@ const isOpen = ref(true);
   right: 0;
   padding: var(--spacing-sm);
   color: light-dark(var(--black-color), var(--white-color));
-  background-color: light-dark(var(--white-tinted-lighter), var(--black-tinted-lighter));
+  background-color: light-dark(var(--white-tinted), var(--black-tinted-light));
   transform: translateX(0);
   transition: transform 0.3s ease;
   z-index: 100;
