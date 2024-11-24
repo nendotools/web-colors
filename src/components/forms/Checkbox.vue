@@ -32,7 +32,7 @@ withDefaults(defineProps<{
     left: 0;
     width: 20px;
     height: 20px;
-    background-color: var(--background-color);
+    background-color: light-dark(var(--white-tinted-darker), var(--black-tinted));
     border: 2px solid var(--background-color-lighter);
     border-radius: 4px;
     transition: background-color 0.3s;

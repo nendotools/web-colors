@@ -48,16 +48,16 @@ button {
   }
 
   &.normal {
-    background-color: light-dark(var(--color-background), var(--color-primary));
-    color: light-dark(var(--text-foreground), var(--text-background));
+    background-color: light-dark(var(--black-tinted), var(--white-tinted));
+    color: light-dark(var(--white-color), var(--black-color));
   }
 
   &.plain {
     background-color: transparent;
-    color: light-dark(var(--text-background), var(--text-foreground));
+    color: light-dark(var(--black-tinted-lighter), var(--white-tinted-darker));
 
     &.highlight {
-      color: var(--color-primary);
+      color: light-dark(var(--black-color), var(--white-color));
       border-bottom: 2px solid var(--secondary-color);
     }
   }

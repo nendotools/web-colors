@@ -1,8 +1,8 @@
 <template>
   <div class="slider-container">
     <div class="slider-indicator" :style="{ height, width }"></div>
-    <input type="range" min="0" :max="limited ? limitedMax : max" :value="value" class="slider-input" :style="{ height }"
-      @input="handleChange" />
+    <input type="range" min="0" :max="limited ? limitedMax : max" :value="value" class="slider-input"
+      :style="{ height }" @input="handleChange" />
 
     <label v-if="label">{{ label }}</label>
     <Icon v-if="limited" name="x-octagon" class="lock limited" size="sm" @click="toggleLock" />
@@ -64,7 +64,7 @@ const toggleLock = () => {
   bottom: -5px;
 
   &.limited {
-    color: var(--text-color-danger);
+    color: var(--error-color);
   }
 }
 
@@ -76,12 +76,11 @@ const toggleLock = () => {
   -webkit-appearance: none;
   background: transparent;
   appearance: none;
-  background: var(--background-color);
   outline: none;
 }
 
 .slider-indicator {
-  background: var(--foreground-color);
+  background: var(--secondary-color);
   position: absolute;
   pointer-events: none;
 }
@@ -136,43 +135,43 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 100%;
   cursor: pointer;
-  background: var(--background-color);
+  background: light-dark(var(--white-tinted-dark), var(--black-tinted));
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: var(--background-color);
+  background: light-dark(var(--white-tinted-dark), var(--black-tinted));
 }
 
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-  background: var(--background-color);
+  background: light-dark(var(--white-tinted-dark), var(--black-tinted));
 }
 
 input[type=range]::-ms-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-  background: var(--primary-color);
+  background: light-dark(var(--white-tinted-dark), var(--black-tinted));
   border-color: transparent;
   border-width: 16px 0;
   color: transparent;
 }
 
 input[type=range]::-ms-fill-lower {
-  background: var(--primary-color);
+  background: var(--secondary-color);
 }
 
 input[type=range]:focus::-ms-fill-lower {
-  background: var(--primary-color);
+  background: var(--secondary-color);
 }
 
 input[type=range]::-ms-fill-upper {
-  background: var(--background-color);
+  background: var(--secondary-color);
 }
 
 input[type=range]:focus::-ms-fill-upper {
-  background: var(--background-color);
+  background: var(--secondary-color);
 }
 </style>

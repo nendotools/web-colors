@@ -74,13 +74,10 @@ const colors = computed(() => {
   padding: var(--spacing-sm) var(--spacing-xxl);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  color: var(--background-color-lighter);
+  justify-content: space-evenly;
+  align-items: center;
+  color: white-black(var(--background-color), var(--background-color));
   user-select: none;
-
-  .active {
-    color: var(--foreground-color);
-  }
 }
 
 .color-options {

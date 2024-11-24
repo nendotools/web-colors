@@ -19,6 +19,6 @@
   align-items: center;
   gap: 1rem;
   padding: var(--spacing-xl) var(--spacing-xxl);
-  background-color: var(--background-color-light);
+  background-color: light-dark(var(--white-tinted), var(--black-tinted-light));
 }
 </style>

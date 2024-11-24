@@ -1,6 +1,5 @@
-import { useGlobalStore } from "~/pinia/global";
 import type { HSLColor } from "../colors";
-import { ColorSchemeTypes, type Scheme } from "../colorschemes";
+import { ColorSchemeTypes, mapColorScheme, type Scheme } from "../colorschemes";
 
 
 // opposite Hue
@@ -29,7 +28,6 @@ export class ComplimentaryScheme implements ComplimentaryColors {
   ) {
     this.primary = primary;
     this.compliment = primary.copy().shift(180);
-    console.log(this.primary.toString());
     this.size = size;
     this.split = false;
     this.spread = spread;
@@ -38,28 +36,11 @@ export class ComplimentaryScheme implements ComplimentaryColors {
   }
 
   prepareColorMap(): Record<string, string> {
-    const globalStore = useGlobalStore();
-    const background = this.primary.copy().setSaturation(
-      this.primary.s * (globalStore.globalInfluence / 100),
-    );
-    return {
-      "--primary-color": this.primary.toString(),
-      "--secondary-color": this.primary.copy().lighten(this.spread * 2)
-        .toString(),
-      "--background-color": background.copy().darken(this.spread * 3)
-        .toString(),
-      "--background-color-light": background.copy().darken(this.spread * 2.5)
-        .toString(),
-      "--background-color-lighter": background.copy().darken(this.spread * 1.5)
-        .toString(),
-      "--foreground-color": this.primary.copy().lighten(this.spread * 2)
-        .toString(),
-      "--text-color": this.primary.copy().darken(this.spread).toString(),
-      "--text-onFill": this.primary.copy().lighten(this.spread).toString(),
-      "--text-color-danger": this.primary.copy().setHue(0).setSaturation(
-        this.primary.s * 0.65,
-      ).toString(),
-    };
+    return mapColorScheme({
+      primary: this.primary,
+      secondary: this.compliment,
+      tertiary: this.primary.copy().setHue(mix(this.primary.h, this.compliment.h, 0.5)),
+    });
   }
 
   toJSON(): string {
