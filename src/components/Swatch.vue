@@ -6,13 +6,20 @@
 
 <script setup lang="ts">
 import { computed } from '#imports';
+import type { HSLColor } from '~/types/colors';
 
-const props = defineProps<{
-  color: HSLColor;
-}>();
+const props = withDefaults(
+  defineProps<{
+    color: HSLColor;
+    height?: number;
+  }>(),
+  {
+    height: 20
+  });
 
 const style = computed(() => ({
   'background-color': props.color.toString(),
+  'height': `${props.height}px`
 }));
 </script>
 

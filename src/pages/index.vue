@@ -5,6 +5,17 @@
     <Slider :height="20" :limited-max="25" :limited="!globalStore.unrestrictedLimit" label="Primary Color Influence"
       :value="globalStore.globalInfluence" @update="(v) => globalStore.setGlobalInfluence(v)"
       @toggle-lock="globalStore.toggleUnrestrictedLimit" />
+
+    <Slider :height="20" :limited-max="15" :limited="!globalStore.unrestrictedBlack" label="Lift Black Value"
+      :value="colorStore.minBlack" @update="(v) => colorStore.setMinBlack(v)"
+      @toggle-lock="globalStore.toggleUnrestrictedBlack" />
+
+    <Slider :height="20" :limited-max="15" :limited="!globalStore.unrestrictedWhite" label="Shade White Value"
+      :value="colorStore.shadeWhite" @update="(v) => colorStore.setWhiteShade(v)"
+      @toggle-lock="globalStore.toggleUnrestrictedWhite" />
+
+    <Spacer size="lg" />
+    <Checkbox label="Mix Accent Color" :checked="colorStore.mixAccentColor" @toggle="colorStore.toggleMixAccent" />
   </Sidebar>
   <div class="content">
     <div class="modes">
@@ -21,10 +32,10 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from "pinia";
 import ColorCard from "@/components/ColorCard.vue";
 import Sidebar from "@/components/ui/Sidebar.vue";
 import Slider from "@/components/forms/Slider.vue";
+import Checkbox from "@/components/forms/Checkbox.vue";
 import Button from "~/components/ui/Button.vue";
 import Spacer from "~/components/ui/Spacer.vue";
 import { useGlobalStore } from "@/pinia/global";
@@ -33,7 +44,6 @@ import { ColorSchemeTypes } from "~/types/colorschemes";
 
 const colorStore = useColorStore();
 const globalStore = useGlobalStore();
-const { currentScheme } = storeToRefs(colorStore);
 
 const currentMode = ref<ColorSchemeTypes>(ColorSchemeTypes.Monochrome);
 

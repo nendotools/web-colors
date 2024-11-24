@@ -1,11 +1,11 @@
 <template>
   <Card>
     <div class="color-group">
-      <Swatch v-for="c in darkenedColors" :key="c.label" :color="c.color" @click="setColor(c.color)" />
+      <Swatch v-for="c in darkenedColors" :key="c.label" :color="c.color" :height="25" @click="setColor(c.color)" />
     </div>
-    <Swatch :color="color" />
+    <Swatch :color="color" :height="50" />
     <div class="color-group">
-      <Swatch v-for="c in lightenedColors" :key="c.label" :color="c.color" @click="setColor(c.color)" />
+      <Swatch v-for="c in lightenedColors" :key="c.label" :color="c.color" :height="25" @click="setColor(c.color)" />
     </div>
 
     <Spacer />
@@ -25,10 +25,8 @@ import Swatch from '@/components/Swatch.vue';
 import Spacer from '@/components/ui/Spacer.vue';
 import Slider from '@/components/forms/Slider.vue';
 import HueSlider from '@/components/HueSlider.vue';
-import { useColorStore } from '@/pinia/colors';
 import type { HSLColor } from '~/types/colors';
 
-const colorStore = useColorStore();
 const props = defineProps<{
   color: HSLColor;
 }>();

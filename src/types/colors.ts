@@ -1,3 +1,5 @@
+import { useColorStore } from "~/pinia/colors";
+
 export interface HSLColor {
   h: number;
   s: number;
@@ -38,8 +40,9 @@ export class hsl implements HSLColor {
   }
 
   toString(): string {
+    const { minBlack, shadeWhite } = useColorStore();
     const alpha = [0, 1, "none"].includes(this.a!) ? "" : ` / ${this.a}`;
-    return `hsl(${this.h}, ${this.s}%, ${this.l}%${alpha})`;
+    return `hsl(${this.h}, ${this.s}%, ${clamp(this.l, minBlack, 100 - shadeWhite)}%${alpha})`;
   }
 
   shift(hue: number) {

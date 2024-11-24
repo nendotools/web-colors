@@ -5,6 +5,8 @@ interface State {
   mode: "light" | "dark";
   globalInfluence: number;
   unrestrictedLimit: boolean;
+  unrestrictedBlack: boolean;
+  unrestrictedWhite: boolean;
 }
 
 export const useGlobalStore = defineStore("global", {
@@ -13,6 +15,8 @@ export const useGlobalStore = defineStore("global", {
     mode: "dark",
     globalInfluence: 10,
     unrestrictedLimit: false,
+    unrestrictedBlack: false,
+    unrestrictedWhite: false,
   }),
   getters: {
     isMobile(state: State) {
@@ -33,6 +37,12 @@ export const useGlobalStore = defineStore("global", {
     },
     toggleUnrestrictedLimit() {
       this.unrestrictedLimit = !this.unrestrictedLimit;
+    },
+    toggleUnrestrictedBlack() {
+      this.unrestrictedBlack = !this.unrestrictedBlack;
+    },
+    toggleUnrestrictedWhite() {
+      this.unrestrictedWhite = !this.unrestrictedWhite;
     },
   },
 });
