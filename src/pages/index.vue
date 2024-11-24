@@ -29,6 +29,14 @@
       <ColorCard v-for="color, i in colors" :key="i" :color="color" />
     </div>
 
+    <Card v-if="colorStore.currentScheme">
+      <h3>Color Pallette</h3>
+      <Spacer size="md" />
+      <div class="pallette">
+        <Swatch v-for="col, cssId in colorStore.currentScheme.toCSS()" :key="cssId" :color-string="col" />
+      </div>
+    </Card>
+
     <div class="output">
       <OutputCard />
     </div>
@@ -42,6 +50,7 @@ import Slider from "@/components/forms/Slider.vue";
 import Checkbox from "@/components/forms/Checkbox.vue";
 import Button from "~/components/ui/Button.vue";
 import Spacer from "~/components/ui/Spacer.vue";
+import Card from "~/components/ui/Card.vue";
 import OutputCard from "~/components/OutputCard.vue";
 import { useGlobalStore } from "@/pinia/global";
 import { useColorStore } from "@/pinia/colors";
@@ -81,7 +90,7 @@ const colors = computed(() => {
 }
 
 .color-options {
-  padding: var(--spacing-xxxl) 0;
+  padding: var(--spacing-xl) 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -94,9 +103,22 @@ const colors = computed(() => {
   }
 }
 
+.pallette {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10px;
+
+  div {
+    border: 2px solid light-dark(var(--black-color-lighter), var(--white-color-darker));
+  }
+}
+
+
 .output {
   width: 100%;
-  padding: var(--spacing-xxxl) 0;
+  padding: var(--spacing-xxl) 0;
   overflow: hidden;
 }
 </style>

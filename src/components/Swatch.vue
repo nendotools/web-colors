@@ -1,24 +1,27 @@
 <template>
   <div class="color" :style="style">
-    <div class="detail">{{ props.color.toString() }}</div>
+    <div v-if="!hideHint && color !== null" class="detail">{{ color?.toString() }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from '#imports';
-import type { HSLColor } from '~/types/colors';
+import { type HSLColor } from '~/types/colors';
 
 const props = withDefaults(
   defineProps<{
-    color: HSLColor;
+    color?: HSLColor;
+    colorString?: string;
     height?: number;
+    hideHint?: boolean
   }>(),
   {
-    height: 20
+    height: 20,
+    hideHint: false
   });
 
 const style = computed(() => ({
-  'background-color': props.color.toString(),
+  'background-color': props.color ? props.color.toString() : props.colorString,
   'height': `${props.height}px`
 }));
 </script>

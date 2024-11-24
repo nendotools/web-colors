@@ -10,7 +10,7 @@ import feather from 'feather-icons';
 
 const props = withDefaults(defineProps<{
   name: string;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
 }>(),
   {
     size: 'md',
@@ -35,6 +35,13 @@ onMounted(() => {
   svg {
     width: 1rem;
     height: 1rem;
+  }
+
+  &.icon-xs {
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 
   &.icon-sm {

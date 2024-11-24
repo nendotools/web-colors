@@ -1,29 +1,63 @@
 <template>
   <Card>
-    <div>
-      <h3>CSS Variables</h3>
+    <div class="wrapper">
+      <div>
+        <h3>CSS Variables</h3>
+      </div>
+      <Button class="copy" :class="{ copied }">
+        <Icon name="clipboard" size="sm" />
+        <Icon name="check" size="xs" class="success" />
+      </Button>
+      <pre class="code">{{
+        colorStore.currentScheme?.toCSSString()
+        }}</pre>
     </div>
-    <pre class="code">{{
-      colorStore.currentScheme?.toCSSString()
-      }}</pre>
   </Card>
 </template>
 
 <script setup lang="ts">
+import Icon from './ui/Icon.vue';
 import Card from '@/components/ui/Card.vue';
 import { useColorStore } from '~/pinia/colors';
 const colorStore = useColorStore();
+
+const copied = ref(true);
 </script>
 
 <style lang="scss" scoped>
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
 .code {
   padding: var(--spacing-sm);
-  background-color: var(--background-color-light);
+  background-color: light-dark(var(--black-color), var(--black-color));
+  color: var(--white-color);
   border-radius: var(--border-radius);
   font-size: var(--font-size-sm);
   font-family: var(--font-family-mono);
-  background-color: var(--background-color);
   overflow-x: auto;
   user-select: all;
+}
+
+.copy {
+  border: none;
+  position: absolute;
+  right: var(--spacing-md);
+  top: var(--spacing-xxxl);
+}
+
+.success {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+}
+
+.copied {
+  color: var(--success-color);
+  background-color: light-dark(var(--black-tinted-lighter), var(--black-tinted-lighter));
 }
 </style>

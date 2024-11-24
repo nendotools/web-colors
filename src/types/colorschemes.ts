@@ -39,10 +39,10 @@ export const mapColorScheme = (opts: {
   const white = new hsl(opts.primary.h, 0, 100 - shadeWhite);
   const black = new hsl(opts.primary.h, 0, minBlack);
 
-  const info = new hsl(mix(210, opts.primary.h, globalInfluence / 100), 100, 50);
-  const success = new hsl(mix(120, opts.primary.h, globalInfluence / 100), 100, 50);
-  const warning = new hsl(mix(60, opts.primary.h, globalInfluence / 100), 100, 50);
-  const error = new hsl(mix(0, opts.primary.h, globalInfluence / 100), 100, 50);
+  const info = new hsl(mix(210, opts.primary.h, globalInfluence / 200), 100, 50);
+  const success = new hsl(mix(120, opts.primary.h, globalInfluence / 200), 100, 50);
+  const warning = new hsl(mix(60, opts.primary.h, globalInfluence / 200), 100, 50);
+  const error = new hsl(mix(0, opts.primary.h, globalInfluence / 200), 100, 50);
 
   return {
     // MAIN COLORS
