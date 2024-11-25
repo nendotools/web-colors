@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 
   css: ["~/assets/styles/mixins.scss"],
   app: {
+    baseURL: '/web-colors/',
     head: {
       link: [{ rel: "preconnect", href: "https://fonts.gstatic.com" }, {
         rel: "preconnect",
