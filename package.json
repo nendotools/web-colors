@@ -25,6 +25,7 @@
     "eslint": "^9.15.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
+    "push-dir": "^0.4.1",
     "sass-embedded": "^1.80.6"
   }
 }
