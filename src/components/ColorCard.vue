@@ -1,11 +1,13 @@
 <template>
   <Card>
     <div class="color-group">
-      <Swatch v-for="c in darkenedColors" :key="c.label" :color="c.color" :height="25" @click="setColor(c.color)" />
+      <Swatch v-for="c in darkenedColors" :key="c.label" hide-hint :color="c.color" :height="25"
+        @click="setColor(c.color)" />
     </div>
     <Swatch :color="color" :height="50" />
     <div class="color-group">
-      <Swatch v-for="c in lightenedColors" :key="c.label" :color="c.color" :height="25" @click="setColor(c.color)" />
+      <Swatch v-for="c in lightenedColors" :key="c.label" hide-hint :color="c.color" :height="25"
+        @click="setColor(c.color)" />
     </div>
 
     <Spacer />

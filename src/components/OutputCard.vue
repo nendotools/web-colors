@@ -5,8 +5,7 @@
         <h3>CSS Variables</h3>
       </div>
       <Button class="copy" :class="{ copied }">
-        <Icon name="clipboard" size="sm" />
-        <Icon name="check" size="xs" class="success" />
+        <Icon name="copy" size="sm" class="clip-icon" />
       </Button>
       <pre class="code">{{
         colorStore.currentScheme?.toCSSString()
@@ -17,6 +16,7 @@
 
 <script setup lang="ts">
 import Icon from './ui/Icon.vue';
+import Button from './ui/Button.vue';
 import Card from '@/components/ui/Card.vue';
 import { useColorStore } from '~/pinia/colors';
 const colorStore = useColorStore();
@@ -36,7 +36,7 @@ const copied = ref(true);
   padding: var(--spacing-sm);
   background-color: light-dark(var(--black-color), var(--black-color));
   color: var(--white-color);
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   font-size: var(--font-size-sm);
   font-family: var(--font-family-mono);
   overflow-x: auto;
@@ -48,6 +48,7 @@ const copied = ref(true);
   position: absolute;
   right: var(--spacing-md);
   top: var(--spacing-xxxl);
+  background-color: var(--black-tinted-lighter);
 }
 
 .success {
@@ -56,8 +57,14 @@ const copied = ref(true);
   right: var(--spacing-xs);
 }
 
-.copied {
-  color: var(--success-color);
-  background-color: light-dark(var(--black-tinted-lighter), var(--black-tinted-lighter));
+.wrapper {
+  .clip-icon {
+    color: var(--white-color);
+  }
+
+  .copied {
+    color: var(--success-color);
+    background-color: light-dark(var(--black-tinted-lighter), var(--black-tinted-lighter));
+  }
 }
 </style>

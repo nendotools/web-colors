@@ -40,6 +40,8 @@
     <div class="output">
       <OutputCard />
     </div>
+
+    <Spacer size="xxl" />
   </div>
 </template>
 
@@ -117,8 +119,9 @@ const colors = computed(() => {
 
 
 .output {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding: var(--spacing-xxl) 0;
-  overflow: hidden;
 }
 </style>

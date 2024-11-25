@@ -36,6 +36,7 @@ button {
   border: none;
   cursor: pointer;
   color: var(--color-primary);
+  border-radius: 4px;
   transition: color 0.5s ease-in-out;
 
   &.glow {
