@@ -5,7 +5,7 @@ import type { ComplimentaryColors } from "./colorschemes/complimentary";
 import type { MonochromeColors } from "./colorschemes/monochromatic";
 import type { TriadicColors } from "./colorschemes/triadic";
 import { useGlobalStore } from "~/pinia/global";
-import { avg, avgHue } from "~/utils/colorHelpers";
+import { avg } from "~/utils/colorHelpers";
 
 export interface Scheme {
   type: ColorSchemeTypes;
@@ -45,10 +45,10 @@ export const mapColorScheme = (opts: {
   const avgSaturation = (opts.primary.s + opts.secondary.s + opts.tertiary.s) / 2.5;
   const avgLuminance = Math.min(75, Math.max(30, (opts.primary.l + opts.secondary.l + opts.tertiary.l) / 3));
 
-  const info = new hsl(avgHue(210, opts.primary.h, 0.8 / globalInfluence), avgSaturation, avgLuminance);
-  const success = new hsl(avgHue(120, opts.primary.h, 0.8 / globalInfluence), avgSaturation, avgLuminance);
-  const warning = new hsl(avgHue(60, opts.primary.h, 0.8 / globalInfluence), avgSaturation, avgLuminance);
-  const error = new hsl(avgHue(0, opts.primary.h, 0.8 / globalInfluence), avgSaturation, avgLuminance);
+  const info = new hsl(mix(210, opts.primary.h, globalInfluence / 200), avgSaturation, avgLuminance);
+  const success = new hsl(mix(120, opts.primary.h, globalInfluence / 200), avgSaturation, avgLuminance);
+  const warning = new hsl(mix(60, opts.primary.h, globalInfluence / 200), avgSaturation, avgLuminance);
+  const error = new hsl(mix(0, opts.primary.h, globalInfluence / 400), avgSaturation, avgLuminance);
 
 
   return {
