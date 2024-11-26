@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate && touch .output/public/.nojekyll",
     "preview": "nuxt preview",
-    "deploy": "nuxt generate && touch dist/.nojekyll && push-dir --dir=.output/public --branch=gh-pages --cleanup && rm -r dist .output",
+    "deploy": "nuxt generate && touch dist/.nojekyll && push-dir --dir=.output/public --branch=gh-pages --cleanup && rm -r .output dist",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
