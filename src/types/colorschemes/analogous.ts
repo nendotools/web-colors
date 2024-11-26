@@ -71,7 +71,6 @@ export class AnalogousScheme implements AnalogousColors {
         }
       }
     }
-    console.log(colMap);
     return colMap;
   }
 }

@@ -79,7 +79,6 @@ export const useColorStore = defineStore("colors", {
       this.shadeWhite = Math.max(value, 0);
     },
     toggleMixAccent() {
-      console.log("toggling mix accent");
       this.mixAccentColor = !this.mixAccentColor;
     }
   },

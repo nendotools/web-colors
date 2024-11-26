@@ -75,7 +75,6 @@ export class ComplimentaryScheme implements ComplimentaryColors {
         }
       }
     }
-    console.log(colMap);
     return colMap;
   }
 }

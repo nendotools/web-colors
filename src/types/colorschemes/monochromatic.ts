@@ -71,7 +71,6 @@ export class MonochromeScheme implements MonochromeColors {
         }
       }
     }
-    console.log(colMap);
     return colMap;
   }
 }

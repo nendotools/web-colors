@@ -44,7 +44,6 @@ const toggleLock = () => {
   if (props.limited === null) return;
   if (!props.limited && props.value > props.limitedMax) {
     emit('update', props.limitedMax);
-    console.log('limting to', props.limitedMax);
   }
 
   emit('toggleLock');

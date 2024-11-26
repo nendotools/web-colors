@@ -75,7 +75,6 @@ export class TriadicScheme implements TriadicColors {
         }
       }
     }
-    console.log(colMap);
     return colMap;
   }
 }
