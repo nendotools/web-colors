@@ -29,7 +29,7 @@ export class hsl implements HSLColor {
     l: number,
     a: number | "none" = 1,
   ) {
-    this.h = h % 360;
+    this.h = (h % 360);
     this.s = percent(s);
     this.l = percent(l);
     this.a = a === "none" ? a : percent(a);
@@ -42,7 +42,7 @@ export class hsl implements HSLColor {
   toString(): string {
     const { minBlack, shadeWhite } = useColorStore();
     const alpha = [0, 1, "none"].includes(this.a!) ? "" : ` / ${this.a}`;
-    return `hsl(${this.h}, ${this.s.toFixed(1)}%, ${clamp(this.l, minBlack, 100 - shadeWhite).toFixed(1)}%${alpha})`;
+    return `hsl(${this.h.toFixed(1)}, ${this.s.toFixed(1)}%, ${clamp(this.l, minBlack, 100 - shadeWhite).toFixed(1)}%${alpha})`;
   }
 
   shift(hue: number) {
