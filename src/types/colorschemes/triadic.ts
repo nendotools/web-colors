@@ -1,3 +1,4 @@
+import { useGlobalStore } from "~/pinia/global";
 import type { HSLColor } from "../colors";
 import { ColorSchemeTypes, mapColorScheme, type Scheme } from "../colorschemes";
 
@@ -46,15 +47,35 @@ export class TriadicScheme implements TriadicColors {
   toJSON(): string {
     return JSON.stringify(this.prepareColorMap());
   }
-  toCSSString(): string {
-    const values = this.prepareColorMap();
-    const outputString = Object.keys(values).reduce((acc, key) => {
-      return `${acc}\n    ${key}: ${values[key]};`;
+
+  toCSSString(filtered: boolean = false): string {
+    const colMap = this.prepareColorMap();
+    const globalStore = useGlobalStore();
+    if (filtered && !globalStore.globalInfluence) {
+      for (const key in colMap) {
+        if (key.startsWith('--white-tint') || key.startsWith('--black-tint')) {
+          delete colMap[key];
+        }
+      }
+    }
+
+    const outputString = Object.keys(colMap).reduce((acc, key) => {
+      return `${acc}\n    ${key}: ${colMap[key]};`;
     },
       "{");
     return outputString + "\n}";
   }
-  toCSS(): Record<string, string> {
-    return this.prepareColorMap();
+  toCSS(filtered: boolean = false): Record<string, string> {
+    const colMap = this.prepareColorMap();
+    const globalStore = useGlobalStore();
+    if (filtered && !globalStore.globalInfluence) {
+      for (const key in colMap) {
+        if (key.startsWith('--white-tint') || key.startsWith('--black-tint')) {
+          delete colMap[key];
+        }
+      }
+    }
+    console.log(colMap);
+    return colMap;
   }
 }

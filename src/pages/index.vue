@@ -33,7 +33,7 @@
       <h3>Color Pallette</h3>
       <Spacer size="md" />
       <div class="pallette">
-        <Swatch v-for="col, cssId in colorStore.currentScheme.toCSS()" :key="cssId" :color-string="col" />
+        <Swatch v-for="col, cssId in colorStore.currentScheme?.toCSS(true)" :key="cssId" :color-string="col" />
       </div>
     </Card>
 

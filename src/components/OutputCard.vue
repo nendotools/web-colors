@@ -8,8 +8,8 @@
         <Icon name="copy" size="sm" class="clip-icon" />
       </Button>
       <pre class="code">{{
-        colorStore.currentScheme?.toCSSString()
-        }}</pre>
+        colorStore.currentScheme?.toCSSString(true)
+      }}</pre>
     </div>
   </Card>
 </template>

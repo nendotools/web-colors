@@ -12,8 +12,8 @@ export interface Scheme {
   primary: HSLColor;
   toString(): string;
   toJSON(): string;
-  toCSS(): Record<string, string>;
-  toCSSString(): string;
+  toCSS(filtered?: boolean): Record<string, string>;
+  toCSSString(filtered?: boolean): string;
 }
 
 export type ColorScheme =
