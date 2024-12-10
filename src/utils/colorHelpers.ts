@@ -42,6 +42,6 @@ export const hslToRgb = (h: number, s: number, l: number, a: number = 1) => {
 }
 
 export const hslToHex = (h: number, s: number, l: number, a: number) => {
-  const { r, g, b } = hslToRgb(h, s, l);
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0'), a.toString(16).padStart(2, '0')}`;
+  const { r, g, b, a: alpha } = hslToRgb(h, s, l, a);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}${alpha.toString(16).padStart(2, '0')}`;
 }

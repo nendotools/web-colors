@@ -34,7 +34,7 @@ export const mapColorScheme = (opts: {
   secondary: HSLColor,
   tertiary: HSLColor,
 }): Record<string, string> => {
-  const { globalInfluence } = useGlobalStore();
+  const { globalInfluence, colorCode } = useGlobalStore();
   const { minBlack, shadeWhite } = useColorStore();
 
   const white = new hsl(opts.primary.h, 0, 100 - shadeWhite);
@@ -53,30 +53,30 @@ export const mapColorScheme = (opts: {
 
   return {
     // MAIN COLORS
-    "--primary-color": opts.primary.toString(),
-    "--secondary-color": opts.secondary.toString(),
-    "--tertiary-color": opts.tertiary.toString(),
+    "--primary-color": opts.primary.toString(colorCode),
+    "--secondary-color": opts.secondary.toString(colorCode),
+    "--tertiary-color": opts.tertiary.toString(colorCode),
 
     // WHITES
-    "--white-color": white.toString(),
-    "--white-color-dark": white.copy().darken(10).toString(),
-    "--white-color-darker": white.copy().darken(20).toString(),
-    "--white-tinted": mixedWhite.toString(),
-    "--white-tinted-dark": mixedWhite.darken(10).toString(),
-    "--white-tinted-darker": mixedWhite.darken(20).toString(),
+    "--white-color": white.toString(colorCode),
+    "--white-color-dark": white.copy().darken(10).toString(colorCode),
+    "--white-color-darker": white.copy().darken(20).toString(colorCode),
+    "--white-tinted": mixedWhite.toString(colorCode),
+    "--white-tinted-dark": mixedWhite.darken(10).toString(colorCode),
+    "--white-tinted-darker": mixedWhite.darken(20).toString(colorCode),
 
     // BLACKS
-    "--black-color": black.toString(),
-    "--black-color-light": black.copy().lighten(10).toString(),
-    "--black-color-lighter": black.copy().lighten(20).toString(),
-    "--black-tinted": mixedBlack.toString(),
-    "--black-tinted-light": mixedBlack.copy().lighten(10).toString(),
-    "--black-tinted-lighter": mixedBlack.copy().lighten(20).toString(),
+    "--black-color": black.toString(colorCode),
+    "--black-color-light": black.copy().lighten(10).toString(colorCode),
+    "--black-color-lighter": black.copy().lighten(20).toString(colorCode),
+    "--black-tinted": mixedBlack.toString(colorCode),
+    "--black-tinted-light": mixedBlack.copy().lighten(10).toString(colorCode),
+    "--black-tinted-lighter": mixedBlack.copy().lighten(20).toString(colorCode),
 
     // SEMANTIC COLORS
-    "--info-color": info.toString(),
-    "--success-color": success.toString(),
-    "--warning-color": warning.toString(),
-    "--error-color": error.toString(),
+    "--info-color": info.toString(colorCode),
+    "--success-color": success.toString(colorCode),
+    "--warning-color": warning.toString(colorCode),
+    "--error-color": error.toString(colorCode),
   };
 }
