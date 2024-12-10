@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
+import { ColorTypes } from "~/types/colors";
 
 interface State {
   windowWidth: number;
   mode: "light" | "dark";
+  colorCode: ColorTypes;
   globalInfluence: number;
   unrestrictedLimit: boolean;
   unrestrictedBlack: boolean;
@@ -13,6 +15,7 @@ export const useGlobalStore = defineStore("global", {
   state: (): State => ({
     windowWidth: window.innerWidth,
     mode: "dark",
+    colorCode: ColorTypes.HSL,
     globalInfluence: 10,
     unrestrictedLimit: false,
     unrestrictedBlack: false,

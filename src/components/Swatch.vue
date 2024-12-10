@@ -1,12 +1,14 @@
 <template>
   <div class="color" :style="style">
-    <div v-if="!hideHint && color !== null" class="detail">{{ color?.toString() }}</div>
+    <div v-if="!hideHint && color !== null" class="detail">{{ color?.toString(colorCode) }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from '#imports';
+import { computed, storeToRefs } from '#imports';
 import { type HSLColor } from '~/types/colors';
+import { useGlobalStore } from '~/pinia/global';
+const { colorCode } = storeToRefs(useGlobalStore());
 
 const props = withDefaults(
   defineProps<{

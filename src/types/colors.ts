@@ -1,4 +1,11 @@
 import { useColorStore } from "~/pinia/colors";
+import { hslToHex, hslToRgb } from "~/utils/colorHelpers";
+
+export enum ColorTypes {
+  HSL = 'hsl',
+  RGB = 'rgb',
+  HEX = 'hex',
+}
 
 export interface HSLColor {
   h: number;
@@ -6,7 +13,7 @@ export interface HSLColor {
   l: number;
   a?: number | "none";
   copy(): HSLColor;
-  toString(): string;
+  toString(mode?: ColorTypes): string;
   shift(hue: number): HSLColor;
   saturate(percent: number): HSLColor;
   desaturate(percent: number): HSLColor;
@@ -39,10 +46,21 @@ export class hsl implements HSLColor {
     return new hsl(this.h, this.s, this.l, this.a);
   }
 
-  toString(): string {
+  toString(mode: ColorTypes = ColorTypes.HSL): string {
     const { minBlack, shadeWhite } = useColorStore();
-    const alpha = [0, 1, "none"].includes(this.a!) ? "" : ` / ${this.a}`;
-    return `hsl(${this.h.toFixed(1)}, ${this.s.toFixed(1)}%, ${clamp(this.l, minBlack, 100 - shadeWhite).toFixed(1)}%${alpha})`;
+
+    switch (mode) {
+      case "hsl":
+        const alpha = [0, 1, "none"].includes(this.a!) ? "" : ` / ${this.a}`;
+        return `hsl(${this.h.toFixed(1)}, ${this.s.toFixed(1)}%, ${clamp(this.l, minBlack, 100 - shadeWhite).toFixed(1)}%${alpha})`;
+      case "rgb":
+        const { r, g, b } = hslToRgb(this.h, this.s, this.l, isNaN(this.a as number) || !this.a ? 1 : Number(this.a));
+        return `rgb(${r}, ${g}, ${b})`;
+      case "hex":
+        return hslToHex(this.h, this.s, this.l, isNaN(this.a as number) || !this.a ? 1 : Number(this.a));
+      default:
+        return '';
+    }
   }
 
   shift(hue: number) {
